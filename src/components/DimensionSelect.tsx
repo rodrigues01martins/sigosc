@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
+import { BrandWordmark } from './ui/BrandWordmark';
 
 export type Dimension = 'financeiro' | 'metas' | 'apuracao' | 'gestao';
 
@@ -65,7 +66,7 @@ export const DimensionSelect: React.FC<DimensionSelectProps> = ({ isAdmin, onSel
 
         {/* ── Marcas ── */}
         <div className="w-full max-w-sm mx-auto flex items-center justify-center pt-10">
-          <img src="/logo-seds-goias.png" alt="SEDS · Governo de Goiás" className="h-9 w-auto object-contain" />
+          <BrandWordmark size="md" />
         </div>
       </div>
     </div>

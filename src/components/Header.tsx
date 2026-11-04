@@ -1,6 +1,7 @@
 import React from 'react';
 import { Home } from 'lucide-react';
 import { Button } from './ui/Button';
+import { BrandWordmark } from './ui/BrandWordmark';
 
 interface HeaderProps {
   showExportButton: boolean;
@@ -16,7 +17,7 @@ export const Header: React.FC<HeaderProps> = ({ showExportButton, onGoHome, onEx
 
         {/* ── Marcas ── */}
         <div className="flex items-center gap-4 shrink-0">
-          <img src="/logo-seds-goias.png" alt="SEDS · Governo de Goiás" className="h-10 w-auto object-contain" />
+          <BrandWordmark size="lg" />
         </div>
 
         {/* ── Menu ── */}

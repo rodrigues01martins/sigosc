@@ -8,6 +8,7 @@ import { auth } from '../firebase';
 import { Mail, Key } from 'lucide-react';
 import { TextInput } from './ui/FormField';
 import { Button } from './ui/Button';
+import { BrandWordmark } from './ui/BrandWordmark';
 
 interface LoginProps {
   showToast: (message: string) => void;
@@ -89,7 +90,7 @@ export const Login: React.FC<LoginProps> = ({ showToast }) => {
 
         {/* ── Marcas ── */}
         <div className="w-full max-w-sm mx-auto flex items-center justify-center pt-10">
-          <img src="/logo-seds-goias.png" alt="SEDS · Governo de Goiás" className="h-9 w-auto object-contain" />
+          <BrandWordmark size="md" />
         </div>
       </div>
     </div>
