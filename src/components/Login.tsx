@@ -9,6 +9,7 @@ import { Mail, Key } from 'lucide-react';
 import { TextInput } from './ui/FormField';
 import { Button } from './ui/Button';
 import { BrandWordmark } from './ui/BrandWordmark';
+import { LogoPlaceholder } from './ui/LogoPlaceholder';
 
 interface LoginProps {
   showToast: (message: string) => void;
@@ -45,47 +46,54 @@ export const Login: React.FC<LoginProps> = ({ showToast }) => {
 
       {/* ── Formulário ── */}
       <div className="flex-1 flex flex-col justify-center px-6 sm:px-12 lg:px-20 py-12">
-        <div className="w-full max-w-sm mx-auto flex-1 flex flex-col justify-center">
-          <form onSubmit={handleLogin} className="space-y-6">
-            <div className="space-y-2">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                <Mail size={12} /> E-mail Institucional
-              </label>
-              <TextInput
-                type="email"
-                required
-                variant="filled"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="p-4"
-                placeholder="email registrado"
-              />
-            </div>
+        {/* ── Duas colunas 1:1 — mesmo padrão da seleção de módulos
+             (DimensionSelect): placeholder da logo | formulário.
+             Abaixo de `sm` empilha: placeholder primeiro, formulário depois. ── */}
+        <div className="w-full max-w-3xl mx-auto flex-1 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 content-center items-stretch">
+          <LogoPlaceholder />
 
-            <div className="space-y-2">
-              <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
-                <Key size={12} /> Senha
-              </label>
-              <TextInput
-                type="password"
-                required
-                variant="filled"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="p-4"
-                placeholder="••••••••"
-              />
-            </div>
+          <div className="min-w-0 flex flex-col justify-center">
+            <form onSubmit={handleLogin} className="space-y-6">
+              <div className="space-y-2">
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                  <Mail size={12} /> E-mail Institucional
+                </label>
+                <TextInput
+                  type="email"
+                  required
+                  variant="filled"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="p-4"
+                  placeholder="email registrado"
+                />
+              </div>
 
-            <Button
-              type="submit"
-              loading={loading}
-              size="lg"
-              className="w-full rounded-2xl shadow-[#007770]/20"
-            >
-              {loading ? 'Entrando...' : 'Entrar'}
-            </Button>
-          </form>
+              <div className="space-y-2">
+                <label className="text-[10px] font-bold text-slate-400 uppercase tracking-widest flex items-center gap-2">
+                  <Key size={12} /> Senha
+                </label>
+                <TextInput
+                  type="password"
+                  required
+                  variant="filled"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  className="p-4"
+                  placeholder="••••••••"
+                />
+              </div>
+
+              <Button
+                type="submit"
+                loading={loading}
+                size="lg"
+                className="w-full rounded-2xl shadow-[#007770]/20"
+              >
+                {loading ? 'Entrando...' : 'Entrar'}
+              </Button>
+            </form>
+          </div>
         </div>
 
         {/* ── Marcas ── */}
