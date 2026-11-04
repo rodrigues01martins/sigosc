@@ -1,18 +1,23 @@
-import { initializeApp } from 'firebase/app';
+import { initializeApp, getApps, getApp } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
+import { resolveFirebaseConfig } from './config/firebaseConfig.js';
 
-const config = {
-  apiKey: 'AIzaSyC9WVWHn1N8I4QIL8BB-HBapcQWA_lqbyw',
-  authDomain: 'sgma-tcrioverde20262.firebaseapp.com',
-  projectId: 'sgma-tcrioverde20262',
-  storageBucket: 'sgma-tcrioverde20262.firebasestorage.app',
-  messagingSenderId: '709593801447',
-  appId: '1:709593801447:web:044477dd318433c5c1b842',
-  measurementId: 'G-DXDCF3FGN3',
-};
+// ============================================================
+// FIREBASE CLIENT SDK — ponto ÚNICO de inicialização (SIGOSC-EV-002)
+// ============================================================
+// Todos os componentes e serviços importam `auth`/`db` daqui; nenhum
+// outro arquivo de src/ pode chamar initializeApp/getAuth/getFirestore
+// (verificado em src/config/firebaseIsolation.test.js).
+//
+// A configuração vem das variáveis VITE_FIREBASE_* e é validada contra o
+// projeto `sigosc-8f529` — valor ausente ou projeto diferente lança
+// FirebaseConfigError antes de qualquer conexão (sem fallback).
+// Storage não é usado pelo app, por isso não é inicializado.
+export const firebaseConfig = resolveFirebaseConfig(import.meta.env);
 
-const app = initializeApp(config);
+// Idempotente: reaproveita o app já criado (ex.: HMR do Vite em dev).
+export const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 export const db = getFirestore(app);

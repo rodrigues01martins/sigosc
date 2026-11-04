@@ -56,13 +56,17 @@ A tela está vazia: o conteúdo anterior (abas Upload, Gerencial, Repasse e Hist
 
 1. Instale as dependências:
    `npm install`
-2. Crie um projeto no [Firebase Console](https://console.firebase.google.com/), ative **Authentication** (e-mail/senha) e **Cloud Firestore**.
-3. Copie as credenciais do projeto (config do app web) para `src/firebase.ts`.
+2. O projeto Firebase do SIGOSC é o `sigosc-8f529` (único aceito pelo app). Ative **Authentication** (e-mail/senha) e **Cloud Firestore** nele — passo a passo em [`docs/FIREBASE_SIGOSC.md`](docs/FIREBASE_SIGOSC.md).
+3. Copie `.env.example` para `.env` — as variáveis `VITE_FIREBASE_*` já vêm preenchidas com a config web do `sigosc-8f529`. Sem elas (ou com outro projeto) o app não inicia e mostra o motivo.
 4. Publique as regras de segurança em `firestore.rules` no seu projeto Firebase.
 5. Ajuste `BOOTSTRAP_ADMIN_EMAIL` em `src/firebase.ts` e em `firestore.rules` para o e-mail que deve ser administrador antes de qualquer papel ser atribuído.
 6. Rode o app localmente:
    `npm run dev`
 7. Faça login com o e-mail de bootstrap, acesse Gestão do Aplicativo → Gestão de Usuários para cadastrar os demais usuários, e Acompanhamento Financeiro → Itens do Plano para cadastrar os itens orçamentários.
+
+### Variáveis de ambiente do cliente (Vercel)
+
+As 6 variáveis `VITE_FIREBASE_*` de `.env.example` também precisam estar cadastradas na Vercel antes do build.
 
 ### Variáveis de ambiente do servidor (Vercel)
 
@@ -70,7 +74,7 @@ Necessárias apenas para as funções administrativas em `api/admin/*` (criaçã
 
 | Variável | Origem |
 |---|---|
-| `FIREBASE_ADMIN_PROJECT_ID` | Conta de serviço do Firebase (Console → Configurações do projeto → Contas de serviço) |
+| `FIREBASE_ADMIN_PROJECT_ID` | Sempre `sigosc-8f529` — outro valor é recusado |
 | `FIREBASE_ADMIN_CLIENT_EMAIL` | Idem |
 | `FIREBASE_ADMIN_PRIVATE_KEY` | Idem — colar como veio do JSON; o código converte `\n` literal automaticamente |
 | `BOOTSTRAP_ADMIN_EMAIL` | Mesmo e-mail de `src/firebase.ts`/`firestore.rules` |

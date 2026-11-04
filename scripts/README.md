@@ -1,5 +1,12 @@
 # Scripts de migração — monitora-japrendiz → ptrenapsi
 
+> **Legado (SIGOSC-EV-002).** Estes scripts foram herdados do aplicativo de
+> origem e operam sobre projetos Firebase **externos ao SIGOSC**
+> (`japrendiz-2026`, `sgma-tcrioverde20262`). Não fazem parte do app, não
+> devem ser executados no contexto do SIGOSC e foram mantidos só como
+> histórico. O SIGOSC usa exclusivamente `sigosc-8f529` — ver
+> `docs/FIREBASE_SIGOSC.md`.
+
 Scripts de uso único ligados à Fase 0/1 do roteiro de integração (ver a página
 publicada compartilhada com o time). Não fazem parte do app em produção.
 
