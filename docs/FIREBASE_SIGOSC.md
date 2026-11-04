@@ -24,7 +24,7 @@ O SIGOSC usa **somente** o projeto Firebase `sigosc-8f529`. Este documento regis
 | `scripts/limpar-visitas-in-loco-antigas.mjs` | Script de manutenção pontual do app de origem; só roda contra `sgma-tcrioverde20262` | **Mantido como legado.** Não faz parte do app, não é importado nem executado no build. Não foi apontado para o SIGOSC porque é um script de exclusão de dados |
 | `scripts/export-japrendiz-data.mjs` | Backup do projeto `japrendiz-2026`, anterior ao app de origem | **Mantido como legado**, pelo mesmo motivo |
 | `scripts/README.md`, `src/index.css` (comentário) | Menções históricas | Mantidas como documentação |
-| `BOOTSTRAP_ADMIN_EMAIL` (`src/firebase.ts`, `firestore.rules`, variável do servidor) | E-mail de administrador inicial herdado | **Mantido.** Não é ligado a nenhum projeto Firebase, mas define quem vira admin. Confirme se esse é o e-mail certo para o SIGOSC (seção 4) |
+| `BOOTSTRAP_ADMIN_EMAIL` (`src/firebase.ts`, `firestore.rules`, variável do servidor) | E-mail de administrador inicial herdado | **Substituído** por `rodrigues01martins@gmail.com`, confirmado pelo responsável. Os valores do cliente e das regras são conferidos por `firebaseIsolation.test.js` |
 
 Não existiam `firebase.json`, `.firebaserc`, `firestore.indexes.json`, `storage.rules` nem `vercel.json`. Também não havia uma segunda inicialização do Firebase em nenhum lugar do código.
 
@@ -50,7 +50,7 @@ Em https://console.firebase.google.com/project/sigosc-8f529 :
    1. Em *Build → Firestore Database*, clique em **Create database**, escolha o modo **production** e uma região (sugestão: `southamerica-east1`, São Paulo; não dá para mudar depois).
    2. Na aba *Rules*, cole o conteúdo de `firestore.rules` e clique em **Publish**. Antes, confirme o e-mail de bootstrap (passo 4).
 3. **Storage**: não precisa ativar, porque o app não usa.
-4. **Primeiro administrador**: hoje o e-mail de bootstrap é o herdado (`BOOTSTRAP_ADMIN_EMAIL`). Se for outro, troque o valor nos 3 lugares: `src/firebase.ts`, `firestore.rules` (`isAdmin()`) e a variável do servidor. Depois, crie esse usuário **manualmente** em *Authentication → Users → Add user*. O app não cria usuários automaticamente.
+4. **Primeiro administrador**: o e-mail de bootstrap é `rodrigues01martins@gmail.com`, já definido em `src/firebase.ts` e `firestore.rules`. Cadastre o mesmo valor na variável `BOOTSTRAP_ADMIN_EMAIL` da Vercel e crie esse usuário **manualmente** em *Authentication → Users → Add user*. O app não cria usuários automaticamente.
 5. **Conta de serviço (para `api/admin/*`)**: em *Configurações do projeto → Contas de serviço → Gerar nova chave privada*, baixe o JSON e **não o commite**.
 
 ## 5. Variáveis de ambiente na Vercel
@@ -63,7 +63,7 @@ Cadastre em *Project Settings → Environment Variables* (Production, Preview e 
 | `FIREBASE_ADMIN_PROJECT_ID` | `sigosc-8f529` |
 | `FIREBASE_ADMIN_CLIENT_EMAIL` | `client_email` do JSON da conta de serviço |
 | `FIREBASE_ADMIN_PRIVATE_KEY` | `private_key` do JSON da conta de serviço |
-| `BOOTSTRAP_ADMIN_EMAIL` | O mesmo e-mail do passo 4 |
+| `BOOTSTRAP_ADMIN_EMAIL` | `rodrigues01martins@gmail.com` |
 
 As variáveis `VITE_*` são lidas **no build**. Se forem cadastradas depois do deploy, é preciso fazer um *Redeploy*.
 

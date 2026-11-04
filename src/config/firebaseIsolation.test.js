@@ -105,3 +105,11 @@ test('firestore.rules não tem acesso público irrestrito', () => {
   assert.doesNotMatch(regras, /allow\s+[a-z, ]+:\s*if\s+true\s*;/)
   assert.match(regras, /match \/\{document=\*\*\}\s*\{\s*allow read, write: if false;/)
 })
+
+test('e-mail de administrador bootstrap é o mesmo no cliente e em firestore.rules', () => {
+  const cliente = ler(join('src', 'firebase.ts')).match(/BOOTSTRAP_ADMIN_EMAIL = '([^']+)'/)
+  const regras = ler('firestore.rules').match(/request\.auth\.token\.email == "([^"]+)"/)
+  assert.ok(cliente && regras, 'e-mail de bootstrap não encontrado')
+  assert.equal(cliente[1], regras[1])
+  assert.equal(cliente[1], 'rodrigues01martins@gmail.com')
+})
