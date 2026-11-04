@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 import { BrandWordmark } from './ui/BrandWordmark';
+import { LogoPlaceholder } from './ui/LogoPlaceholder';
 
 export type Dimension = 'financeiro' | 'metas' | 'apuracao' | 'gestao';
 
@@ -47,21 +48,27 @@ export const DimensionSelect: React.FC<DimensionSelectProps> = ({ isAdmin, onSel
           Sair
         </button>
 
-        <div className="w-full max-w-sm mx-auto flex-1 flex flex-col justify-center divide-y divide-slate-100">
-          <DimensionOption
-            lines={['Acompanhamento', 'Financeiro']}
-            onClick={() => onSelect('financeiro')}
-          />
-          <DimensionOption
-            lines={['Monitoramento', 'e Avaliação']}
-            onClick={() => onSelect('metas')}
-          />
-          {isAdmin && (
+        {/* ── Duas colunas 1:1 — placeholder da logo | botões de acesso.
+             Abaixo de `sm` empilha: placeholder primeiro, botões depois. ── */}
+        <div className="w-full max-w-3xl mx-auto flex-1 grid grid-cols-1 sm:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 content-center items-stretch">
+          <LogoPlaceholder />
+
+          <div className="min-w-0 flex flex-col justify-center divide-y divide-slate-100">
             <DimensionOption
-              lines={['Gestão do', 'Aplicativo']}
-              onClick={() => onSelect('gestao')}
+              lines={['Acompanhamento', 'Financeiro']}
+              onClick={() => onSelect('financeiro')}
             />
-          )}
+            <DimensionOption
+              lines={['Monitoramento', 'e Avaliação']}
+              onClick={() => onSelect('metas')}
+            />
+            {isAdmin && (
+              <DimensionOption
+                lines={['Gestão do', 'Aplicativo']}
+                onClick={() => onSelect('gestao')}
+              />
+            )}
+          </div>
         </div>
 
         {/* ── Marcas ── */}
