@@ -1,6 +1,6 @@
-# Programa Aprendiz do Futuro — SEDS/GO
+# SISTEMA DE GESTÃO DE PARCERIAS - ORGANIZAÇÃO DA SOCIEDADE CIVIL
 
-Aplicativo de acompanhamento, gestão financeira e Monitoramento e Avaliação do Programa Aprendiz do Futuro (SEDS/GO), com quatro dimensões independentes: Acompanhamento Financeiro, Monitoramento e Avaliação, Apuração Mensal e Gestão do Aplicativo.
+Aplicativo de acompanhamento, gestão financeira, Monitoramento e Avaliação de Parcerias entres Poder Público e Organizações da Sociedade Civil (OSCs)
 
 ## Arquitetura
 
@@ -30,10 +30,7 @@ A tela está vazia: o conteúdo anterior (abas Upload, Gerencial, Repasse e Hist
 
 ### Monitoramento e Avaliação
 
-- **Formulários**: Visita In Loco (instrumento único do Termo de Colaboração nº 02/2026 — CASER Rio Verde: 7 seções, 22 itens, autosave, uma visita por data, parecer automático), Verificação Inicial — 30 Dias, Relatório Final de Execução do Objeto (assistente em seções, com dados fixos da parceria configurados pelo administrador), Indicadores de Satisfação (Aprendiz Ativo, Mentor da Prática, Responsável Legal — importação via CSV do Microsoft Forms) e Avaliação Pós-Programa (Egresso)
-- **Painéis**: Visita In Loco (consulta), Verificação Inicial — 30 Dias, Indicadores de Satisfação, Avaliação Pós-Programa
-- **Painel Geral de Indicadores**: relatório técnico institucional com os 44 indicadores da matriz metodológica definitiva do Programa (capa, quadro consolidado, fichas técnicas por indicador, notas metodológicas e impressão/PDF), reaproveitando os mesmos motores de cálculo dos painéis individuais — nunca uma fórmula paralela
-- Siglas de indicadores (PVP, TRV, IRI, IQPF etc.) têm tooltip com o nome completo em toda a interface
+
 
 ### Gestão do Aplicativo (somente administradores)
 
